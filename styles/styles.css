@@ -1,0 +1,477 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Generic (CALLED IN NORMALIZE.CSS)
+	- Normalize
+	- Box sizing
+	- Media width
+# Base
+	- Typography
+	- Elements
+	- Links
+# Components
+	- Header
+	- Main
+	- Footer
+--------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Base
+--------------------------------------------------------------*/
+
+/* Typography
+--------------------------------------------- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: var(--line-height);
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Open Sans', sans-serif;
+    margin: .5em 0;
+    font-size: 1.75rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h6 {
+    font-size: 1.3rem;
+}
+
+/* Links
+--------------------------------------------- */
+a,
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus,
+a:active {
+    /* color: #1c036c; */
+    color: var(--font-em-color);
+    text-decoration: underline
+}
+
+
+/* Custom properties
+--------------------------------------------- */
+
+:root {
+    --background-color: #ffffff;
+    --background-contrast-color: #D3D3D3;
+    --font-color: #000000;
+    --font-em-color: #ff0000;
+
+    --fontSzie-Xlarge: 2rem;
+    --fontSize-large: 1.5rem;
+    --fontSize-media: 1.3rem;
+    --fontSize-small: 1rem;
+    --fontSize-xsmall: 0.75rem;
+
+    --line-height: 1.5;
+
+}
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# Components
+--------------------------------------------------------------*/
+.site-wrapper {
+    /* This is for very large screens */
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+/* Site header
+--------------------------------------------- */
+.site-header {
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 4.5rem;
+    margin: 0 auto;
+    background-color: var(--background-color);
+    border-bottom: 1px solid lightgrey;
+}
+
+.site-header img {
+    width: 100px;
+    height: 50px;
+}
+
+#site-logo {
+    margin-left: 1rem;
+    padding-top: 0.5rem;
+}
+
+/* Style for mobile toggle
+--------------------------------------------- */
+.site-navigation ul {
+    display: none;
+    position: absolute;
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    background-color: var(--background-color);
+    list-style-type: none;
+    text-align: center;
+}
+
+.site-navigation ul li {
+    font-family: 'Roboto', sans-serif;
+    font-size: var(--fontSize-media);
+    color: var(--font-color);
+}
+
+.menu-toggle {
+    display: block;
+    background-color: transparent;
+    border: 0;
+    padding: 1rem;
+}
+
+.menu-toggle:focus {
+    border: 0;
+    outline: 1px dotted;
+}
+
+.site-navigation.toggled ul {
+    display: block;
+}
+
+/* End tyle for mobile toggle
+--------------------------------------------- */
+.site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--fontSize-xsmall);
+    border-top: 1px solid var(--background-contrast-color);
+}
+
+.socials {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.socials li {
+    padding: 0 1rem;
+}
+
+
+@media (min-width: 43.75em) {
+
+    /* style site header
+--------------------------------------------- */
+    .site-header {
+        display: flex;
+    }
+
+    .site-header img {
+        width: 140px;
+        height: 70px;
+    }
+
+    .site-navigation ul {
+        font-weight: bold;
+        position: static;
+        display: flex;
+        list-style-type: none;
+        padding-right: 5rem;
+
+    }
+
+    .site-navigation ul a {
+        font-size: var(--fontSize-large);
+    }
+
+    .site-navigation ul li {
+        padding: 1rem;
+    }
+
+    /* style manu-toggle
+--------------------------------------------- */
+    .menu-toggle {
+        display: none;
+    }
+
+    /* footer
+--------------------------------------------- */
+    .site-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid var(--background-contrast-color);
+        padding-left: 1rem;
+        height: 4.5rem;
+        font-size: var(--fontSize-xsmall);
+    }
+
+    .socials {
+        display: flex;
+        justify-content: space-between;
+        list-style-type: none;
+    }
+
+    /* Chiled Selector, in this case, no different between using Child selector or using Desendent selector */
+    .socials>li {
+        padding: 1rem;
+    }
+}
+
+/* Main
+--------------------------------------------- */
+.section-ad {
+    width: 100%;
+    position: relative;
+    margin-top: 4.5rem;
+    background-color: var(--background-contrast-color);
+    height: 20vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.section-ad .ad {
+    position: relative;
+    top: 50px;
+    color: var(--font-em-color);
+    font-size: var(--fontSize-small);
+    white-space: nowrap;
+    text-align: center;
+    animation: becomeBigger 8s linear infinite;
+
+}
+
+@keyframes becomeBigger {
+    0% {
+        font-size: calc(var(--fontSize-small)*0.8);
+    }
+
+    30% {
+        font-size: var(--fontSize-small);
+    }
+
+    50% {
+        font-size: var(--fontSize-media);
+    }
+
+    80% {
+        font-size: var(--fontSize-small);
+    }
+
+    100% {
+        font-size: calc(var(--fontSize-small)*0.8);
+    }
+}
+
+.section-brNews {
+    width: 100%;
+    /* max-height: 50vh; */
+    background-color: var(--background-contrast-color);
+    height: 3rem;
+    overflow: hidden;
+    margin-top: 0.2rem;
+}
+
+.section-brNews .brNews {
+    color: var(--font-em-color);
+    font-size: var(--fontSzie-Xlarge);
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 8s linear infinite;
+    margin-top: 0;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(800%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+.section-banner img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-top: 4.5rem;
+}
+
+[news] {
+    padding: 1rem;
+    border: 1px solid var(--background-contrast-color);
+    box-shadow: 0 0 5px var(--background-contrast-color);
+    margin: 0.5rem;
+}
+
+
+
+/* Descendant selector */
+.item-container h6 {
+    text-align: center;
+}
+
+.item-container img:hover {
+    transform: scale(1.05);
+    transition: transform 1s ease;
+}
+
+.news h2 {
+    margin: 2rem 1em;
+    border-bottom: 1px solid var(--background-contrast-color);
+    text-align: left;
+}
+
+/* General sibling selector--selector all the sibling preceded by the former selector.*/
+P~P {
+    font-size: var(--fontSize-xsmall);
+}
+
+.brNews-content {
+    display: flex;
+    /* flex-direction: column; */
+    height: 20vh;
+    width: auto;
+    /* align-content: center; */
+
+}
+
+/* Adjacent selector--will only select the first element that is immediately preceded by the former selector.*/
+img+div {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 2rem;
+}
+
+img+div h6 {
+    font-size: var(--fontSize-small);
+}
+
+img+div p {
+    display: none
+}
+
+.walkMan {
+    width: 90px;
+    height: 160px;
+    background: url(../assets/images/walk.webp);
+    animation: walk-cycle 2.0s steps(8) infinite;
+    margin-top: 0.8rem;
+}
+
+@keyframes walk-cycle {
+    0% {
+        background-position: 0px;
+    }
+
+    100% {
+        background-position: -720px;
+    }
+
+}
+
+@media (min-width: 43.75em) {
+    .brNews-content .content {
+        margin-left: 4.5rem;
+        margin-right: 4.5rem;
+    }
+
+    .item-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* gap: 1.5rem; */
+        margin: 2rem 4rem;
+    }
+
+    .news h2 {
+        padding-left: 4rem;
+    }
+
+    img+div h6 {
+        font-size: calc(var(--fontSzie-Xlarge) * 0.8);
+    }
+
+    img+div p {
+        display: block
+    }
+
+    .item-container img:hover {
+        transform: scale(1.2);
+        transition: transform 1s ease;
+    }
+
+
+    /* Attribute selector */
+    [news] {
+        border: none;
+        box-shadow: none;
+        padding-right: 2rem;
+        border-right: 1px solid var(--background-contrast-color);
+    }
+
+    /* pseudo selectors*/
+    [news]:nth-child(4n+4) {
+        border-right: none;
+    }
+
+    [news]:hover {
+        border: 0.3rem solid var(--font-em-color);
+    }
+
+
+
+    @keyframes becomeBigger {
+        0% {
+            font-size: var(--fontSize-small);
+        }
+
+        30% {
+            font-size: var(--fontSize-media);
+        }
+
+        50% {
+            font-size: var(--fontSize-large);
+        }
+
+        80% {
+            font-size: var(--fontSize-media);
+        }
+
+        100% {
+            font-size: var(--fontSize-small);
+        }
+    }
+
+    .walkMan {
+        margin-top: 2rem;
+    }
+}
