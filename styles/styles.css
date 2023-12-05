@@ -86,10 +86,6 @@ a:active {
 }
 
 
-
-
-
-
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
@@ -238,7 +234,7 @@ a:active {
         list-style-type: none;
     }
 
-    /* Chiled Selector, in this case, no different between using Child selector or using Desendent selector */
+    /* Child Selector, in this case, no different between using Child selector or using Desendent selector */
     .socials>li {
         padding: 1rem;
     }
@@ -310,7 +306,7 @@ a:active {
 
 @keyframes marquee {
     0% {
-        transform: translateX(800%);
+        transform: translateX(150%);
     }
 
     100% {
@@ -474,4 +470,15 @@ img+div p {
     .walkMan {
         margin-top: 2rem;
     }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(800%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
 }
