@@ -71,7 +71,7 @@ a:active {
 
 :root {
     --background-color: #ffffff;
-    --background-contrast-color: #D3D3D3;
+    --background-contrast-color: #ece9e9;
     --font-color: #000000;
     --font-em-color: #ff0000;
 
@@ -177,6 +177,8 @@ a:active {
 .socials li {
     padding: 0 1rem;
 }
+
+
 
 
 @media (min-width: 43.75em) {
@@ -290,7 +292,7 @@ a:active {
     width: 100%;
     /* max-height: 50vh; */
     background-color: var(--background-contrast-color);
-    height: 3rem;
+    height: auto;
     overflow: hidden;
     margin-top: 0.2rem;
 }
@@ -298,10 +300,13 @@ a:active {
 .section-brNews .brNews {
     color: var(--font-em-color);
     font-size: var(--fontSzie-Xlarge);
+    /* background-color: var(--background-contrast-color); */
     display: inline-block;
     white-space: nowrap;
     animation: marquee 8s linear infinite;
-    margin-top: 0;
+    padding: 0;
+    margin: 0;
+    /* margin-top: 0; */
 }
 
 @keyframes marquee {
@@ -354,27 +359,29 @@ P~P {
 
 .brNews-content {
     display: flex;
-    /* flex-direction: column; */
     height: 20vh;
     width: auto;
-    /* align-content: center; */
-
 }
 
 /* Adjacent selector--will only select the first element that is immediately preceded by the former selector.*/
-img+div {
+img+article {
     display: flex;
     flex-direction: column;
     margin: 1rem 2rem;
 }
 
-img+div h6 {
+img+article h6 {
     font-size: var(--fontSize-small);
 }
 
-img+div p {
+img+article p {
     display: none
 }
+
+.brNews-content {
+    margin-left: 1rem;
+}
+
 
 .walkMan {
     width: 90px;
@@ -396,9 +403,9 @@ img+div p {
 }
 
 @media (min-width: 43.75em) {
-    .brNews-content .content {
-        margin-left: 4.5rem;
-        margin-right: 4.5rem;
+    .brNews-content {
+        margin-left: 5rem;
+        margin-right: 5rem;
     }
 
     .item-container {
@@ -412,11 +419,11 @@ img+div p {
         padding-left: 4rem;
     }
 
-    img+div h6 {
+    img+article h6 {
         font-size: calc(var(--fontSzie-Xlarge) * 0.8);
     }
 
-    img+div p {
+    img+article p {
         display: block
     }
 
