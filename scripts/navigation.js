@@ -1,91 +1,55 @@
-/**
- * File navigation.js.
- *
- * Handles toggling the navigation menu for small screens and enables TAB key
- * navigation support for dropdown menus.
- */
-( function() {
-	const siteNavigation = document.getElementById( 'site-navigation' );
+// JavaScript Document
 
-	// Return early if the navigation don't exist.
-	if ( ! siteNavigation ) {
-		return;
+// Responsive Menu - Dropdown
+const body = document.body;
+const btnMenu = document.getElementById('btn-menu');
+const nav = document.getElementById('main-navigation');
+
+// Below code for preventing nav from animating on 
+// browser re-size modified from code found at
+// this stackoverflow question and answer:
+//
+// https://goo.gl/6s3pAZ
+
+
+btnMenu.addEventListener('click', openMenu);
+// Prevents the focus state from activating
+btnMenu.addEventListener('mousedown', function (e) {
+	e.preventDefault();
+});
+
+function openMenu() {
+	body.classList.toggle('show');
+	nav.classList.add('activated');
+}
+
+// Media Query Event Listener
+// - This is used to remove the "activated"
+// class from the navigation when the user
+// resizes the browser
+
+// Create a media query list using
+// matchMedia
+const mql = window.matchMedia('(min-width: 560px)');
+
+// Add a Media Query Listener to the 
+// above media query list
+mql.addListener(removeTransition);
+
+// Function to remove the transition
+// from the navigation when the user
+// resizes the browser to desktop
+// sizes. In this case when the
+// screen width becomes wider then
+// 560px
+function removeTransition(e) {
+	// e -> is the event object
+	// e.matches -> stores a true false
+	// value depending if the media query
+	// list set above matches or not
+	if (e.matches) {
+		body.classList.remove('show');
+		nav.classList.remove('activated');
 	}
+}
 
-	const button = siteNavigation.getElementsByTagName( 'button' )[ 0 ];
-
-	// Return early if the button don't exist.
-	if ( 'undefined' === typeof button ) {
-		return;
-	}
-
-	const menu = siteNavigation.getElementsByTagName( 'ul' )[ 0 ];
-
-	// Hide menu toggle button if menu is empty and return early.
-	if ( 'undefined' === typeof menu ) {
-		button.style.display = 'none';
-		return;
-	}
-
-	if ( ! menu.classList.contains( 'nav-menu' ) ) {
-		menu.classList.add( 'nav-menu' );
-	}
-
-	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
-	button.addEventListener( 'click', function() {
-		siteNavigation.classList.toggle( 'toggled' );
-
-		if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
-			button.setAttribute( 'aria-expanded', 'false' );
-		} else {
-			button.setAttribute( 'aria-expanded', 'true' );
-		}
-	} );
-
-	// Remove the .toggled class and set aria-expanded to false when the user clicks outside the navigation.
-	document.addEventListener( 'click', function( event ) {
-		const isClickInside = siteNavigation.contains( event.target );
-
-		if ( ! isClickInside ) {
-			siteNavigation.classList.remove( 'toggled' );
-			button.setAttribute( 'aria-expanded', 'false' );
-		}
-	} );
-
-	// Get all the link elements within the menu.
-	const links = menu.getElementsByTagName( 'a' );
-
-	// Toggle focus each time a menu link is focused or blurred.
-	for ( const link of links ) {
-		link.addEventListener( 'focus', toggleFocus, true );
-		link.addEventListener( 'blur', toggleFocus, true );
-	}
-
-	/**
-	 * Sets or removes .focus class on an element.
-	 */
-	function toggleFocus() {
-		if ( event.type === 'focus' || event.type === 'blur' ) {
-			let self = this;
-			// Move up through the ancestors of the current link until we hit .nav-menu.
-			while ( ! self.classList.contains( 'nav-menu' ) ) {
-				// On li elements toggle the class .focus.
-				if ( 'li' === self.tagName.toLowerCase() ) {
-					self.classList.toggle( 'focus' );
-				}
-				self = self.parentNode;
-			}
-		}
-
-		if ( event.type === 'touchstart' ) {
-			const menuItem = this.parentNode;
-			event.preventDefault();
-			for ( const link of menuItem.parentNode.children ) {
-				if ( menuItem !== link ) {
-					link.classList.remove( 'focus' );
-				}
-			}
-			menuItem.classList.toggle( 'focus' );
-		}
-	}
-}() );
